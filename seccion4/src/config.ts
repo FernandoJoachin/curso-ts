@@ -1,4 +1,5 @@
-// Modo watch: tsc archivo.ts -w
+// Imprimir el resultado del archivo ts: ts-node [archivo].ts
+// Modo watch: tsc [archivo].ts -w
 // Modo watch en multiples archivos: tsc -init, tsc -w
 
 // Exclude: Para exclusivar la compilacion de archivos ts (Se puede poner patrones)
