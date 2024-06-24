@@ -1,7 +1,11 @@
 import { Mappable } from "./Mappable";
+import { MapGeocoder } from "./MapGeocoder";
+import { SearchOptions } from "./SearchOptions ";
 
 export class Mapa{
     private googleMap : google.maps.Map;
+    private geocoder: MapGeocoder; 
+
     constructor(divId : string){
         this.googleMap = new google.maps.Map(document.getElementById(divId)!.appendChild, {
             zoom: 1,
@@ -10,6 +14,7 @@ export class Mapa{
                 lng: 0
             }
         });
+        this.geocoder = new MapGeocoder(this.googleMap); 
     }
 
     /**Primera Solucion */
@@ -44,12 +49,20 @@ export class Mapa{
     } */
 
     addMarker(mappable: Mappable) {
-        new google.maps.Marker({
+        const infoWindow = new.google.maps.infoWindow({
+            content: 'Hello World'
+        });
+        const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
             lat: mappable.getLocation.lat,
             lng: mappable.getLocation.lng
             },
         });
+        this.geocoder.addMarkerInfo(marker, mappable);
+    }
+
+    searchText(options: SearchOptions): void{
+        this.geocoder.searchText(options); 
     }
 }

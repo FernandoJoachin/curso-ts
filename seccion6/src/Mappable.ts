@@ -3,4 +3,6 @@ export interface Mappable {
       lat: number;
       lng: number;
     };
+
+    markerTitle(address: () => string) : string;
 }

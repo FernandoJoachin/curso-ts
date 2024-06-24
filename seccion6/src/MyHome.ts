@@ -17,4 +17,8 @@ export class MyHome implements Mappable{
     get getLocation(){
         return this.location;
     }
+
+    markerTitle(address: () => string): string {
+        return `La dirección de mi casa es ${address()}`;
+    }
 }
