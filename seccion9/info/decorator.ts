@@ -26,6 +26,10 @@ class Castles implements ApiEndpoint {
         return this.castles;
     }
 
+    getCastles(@paramDecorator index : number, @paramDecorator defaultValue : string) : string {
+        return this.castles[index] ?? defaultValue;
+    }
+
     @protect('123')
     post(request : {token : string, body : string}){
         this.castles.push(request.body)
@@ -63,6 +67,12 @@ function registerEndpoint(target : any){
     const className : string = target.name;
     const endPoint : string = '/' + className.toLowerCase();
     httpServer[endPoint] = new target()
+}
+
+function paramDecorator(target : any, key : string, index : number){
+    console.log(target);
+    console.log(key);
+    console.log(index);
 }
 
 //registerEndpoint(Families);
